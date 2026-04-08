@@ -1,0 +1,42 @@
+# ── Build output ──
+target/
+*.class
+*.jar
+*.war
+
+# ── IDE ──
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+.cursor/
+
+# ── OS ──
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Maven ──
+.mvn/wrapper/maven-wrapper.jar
+
+# ── Logs ──
+*.log
+logs/
+
+# ── Environment / Secrets ──
+.env
+*.env
+application-local.yml
+
+# ── Node (if frontend added later) ──
+node_modules/
+
+# ── Docker data volumes ──
+postgres-data/
+redis-data/
+
+# ── Agent transcripts / Cursor internal ──
+agent-transcripts/
+mcps/
+terminals/
