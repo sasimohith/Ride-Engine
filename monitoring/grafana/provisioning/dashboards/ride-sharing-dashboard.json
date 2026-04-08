@@ -1,0 +1,105 @@
+{
+  "dashboard": {
+    "id": null,
+    "uid": "ride-sharing-overview",
+    "title": "Ride Sharing Platform - Overview",
+    "tags": ["ride-sharing", "spring-boot"],
+    "timezone": "browser",
+    "refresh": "30s",
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    },
+    "panels": [
+      {
+        "id": 1,
+        "title": "HTTP Request Rate (per second)",
+        "type": "timeseries",
+        "gridPos": { "h": 8, "w": 12, "x": 0, "y": 0 },
+        "targets": [
+          {
+            "expr": "rate(http_server_requests_seconds_count{application=\"ride-sharing-platform\"}[1m])",
+            "legendFormat": "{{method}} {{uri}} {{status}}"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "HTTP Response Time (p95)",
+        "type": "timeseries",
+        "gridPos": { "h": 8, "w": 12, "x": 12, "y": 0 },
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.95, rate(http_server_requests_seconds_bucket{application=\"ride-sharing-platform\"}[5m]))",
+            "legendFormat": "{{uri}} p95"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "JVM Memory Usage",
+        "type": "timeseries",
+        "gridPos": { "h": 8, "w": 12, "x": 0, "y": 8 },
+        "targets": [
+          {
+            "expr": "jvm_memory_used_bytes{application=\"ride-sharing-platform\", area=\"heap\"}",
+            "legendFormat": "Heap - {{id}}"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Active Threads",
+        "type": "stat",
+        "gridPos": { "h": 8, "w": 6, "x": 12, "y": 8 },
+        "targets": [
+          {
+            "expr": "jvm_threads_live_threads{application=\"ride-sharing-platform\"}",
+            "legendFormat": "Live Threads"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Database Connection Pool",
+        "type": "timeseries",
+        "gridPos": { "h": 8, "w": 6, "x": 18, "y": 8 },
+        "targets": [
+          {
+            "expr": "hikaricp_connections_active{application=\"ride-sharing-platform\"}",
+            "legendFormat": "Active"
+          },
+          {
+            "expr": "hikaricp_connections_idle{application=\"ride-sharing-platform\"}",
+            "legendFormat": "Idle"
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "title": "HTTP Error Rate (4xx + 5xx)",
+        "type": "timeseries",
+        "gridPos": { "h": 8, "w": 12, "x": 0, "y": 16 },
+        "targets": [
+          {
+            "expr": "rate(http_server_requests_seconds_count{application=\"ride-sharing-platform\", status=~\"4..|5..\"}[5m])",
+            "legendFormat": "{{status}} {{uri}}"
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "title": "JVM GC Pause Time",
+        "type": "timeseries",
+        "gridPos": { "h": 8, "w": 12, "x": 12, "y": 16 },
+        "targets": [
+          {
+            "expr": "rate(jvm_gc_pause_seconds_sum{application=\"ride-sharing-platform\"}[5m])",
+            "legendFormat": "{{action}} {{cause}}"
+          }
+        ]
+      }
+    ]
+  },
+  "overwrite": true
+}

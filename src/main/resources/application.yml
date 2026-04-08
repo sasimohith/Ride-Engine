@@ -1,0 +1,35 @@
+# ============================================================
+# Ride-Sharing Platform — Common Configuration
+# Profile-specific settings in application-dev.yml / application-prod.yml
+# ============================================================
+
+spring:
+  application:
+    name: ride-sharing-platform
+
+  profiles:
+    active: dev
+
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    default-property-inclusion: non_null
+
+server:
+  port: 8080
+
+# Actuator endpoints for Prometheus monitoring
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus,metrics
+  endpoint:
+    health:
+      show-details: always
