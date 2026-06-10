@@ -8,7 +8,7 @@ INSERT INTO users (name, email, password, phone, role, active, created_at, updat
 VALUES (
     'Platform Admin',
     'admin@ridesharing.com',
-    '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy',
+    '$2a$10$Fdwvb0mdf5rLHNPHCJT08uHnzFZy9dkoQ6mc4STYWxeb.94j79246',
     '0000000000',
     'ADMIN',
     true,
