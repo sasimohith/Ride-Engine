@@ -19,6 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -38,6 +39,7 @@ import java.util.stream.Collectors;
  *   - KafkaTemplate (event publishing)
  */
 @Service
+@Transactional
 public class RideService {
 
     private static final Logger log = LoggerFactory.getLogger(RideService.class);

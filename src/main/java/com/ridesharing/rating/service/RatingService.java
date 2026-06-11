@@ -36,6 +36,7 @@ import java.util.stream.Collectors;
  *   4. Score must be 1-5
  */
 @Service
+@Transactional
 public class RatingService {
 
     private static final Logger log = LoggerFactory.getLogger(RatingService.class);
